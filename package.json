@@ -1,0 +1,23 @@
+{
+  "name": "movietask",
+  "version": "1.0.0",
+  "description": "movietask",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "frontend": "npm start --prefix frontend",
+    "frontendinstall": "npm install --prefix frontend",
+    "dev": "concurrently \"npm run frontend\" \"npm run server\""
+  },
+  "author": "suresh ch",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "mongoose": "^5.13.6",
+    "nodemon": "^2.0.12"
+  }
+}
