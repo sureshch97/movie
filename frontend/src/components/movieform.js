@@ -1,9 +1,10 @@
 import React,  { useState,  Fragment } from 'react'
 import { addmovie } from '../actions/movieaction';
+import  movielist from './movieslist'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
-const Movieform = ({addmovie}) => {
+const Movieform = ({addmovie, history}) => {
 
     const [movieTitle, setmovieTitle] = useState('');
     const [movieRating, setmovieRating] = useState('');
@@ -12,19 +13,20 @@ const Movieform = ({addmovie}) => {
 
     const onsubmit=(e)=>{
         e.preventDefault();
-        addmovie(movieTitle, movieRating, movieReview, movieRealseYear)
+         addmovie(movieRating, movieRealseYear, movieReview, movieTitle, history);
+        
     }
 
     return (
         <Fragment>
-         <form className='col-lg-6' onSubmit={onsubmit}>
-             <h1 className='mb-5 p-3'>Movie Form</h1>
+         <form className='container m-5' onSubmit={onsubmit}>
+             <h3 className=' px-3'>Movie Form</h3>
              <div className='form-group'>
                  
                  <input type='text' placeholder='movieTitle' 
                  onChange={e=> setmovieTitle(e.target.value)}></input>
              </div>
-             <div class="input-field col s12">
+             <div className="input-field col s12">
                 <select  onChange={e=> setmovieRating(e.target.value)}>
                  <option value='0' disabled>movieRating</option>
                 <option value="1">1</option>
@@ -54,7 +56,7 @@ const Movieform = ({addmovie}) => {
              <button className='btn btn-primary' type='submit'>Submit</button>
              
          </form>
-
+         
         </Fragment>
     )
 }

@@ -23,10 +23,9 @@ app.use("/static", express.static("public"));
 app.use('/api/movie' , require('./routes/addmovie'));
 
 
-
-
-
-
-
 app.listen(PORT , ()=>console.log(`server is started ${PORT}` ));
+app.use('/', (req,res)=>{
+    res.send('API is Running...')
+    
+})
 

@@ -1,5 +1,5 @@
 import {
-    ADD_MOVIE
+    ADD_MOVIE, GET_MOVIE
 } from '../type'
 
 const intialstate={
@@ -20,6 +20,12 @@ export default (state = intialstate , action) => {
                 movie:[...state.movie , action.payload],
                 loading:false
                
+            };
+            case GET_MOVIE:
+            return{
+                ...state,
+                movie:action.payload,
+                loading:false  
             };
                 default:
                     return state;

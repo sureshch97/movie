@@ -7,7 +7,7 @@ const Movie = require('../modules/addmovie');
 
 
 
-//route POST api/books
+//route POST api/movie
 router.post('/' ,[
     check('movieTitle' , 'movieTitle is required').not().isEmpty(),
     check('movieReview', 'movieReview is required').not().isEmpty(),
@@ -45,7 +45,24 @@ router.post('/' ,[
        }
         
   
- });
+ }); 
+
+
+//GET Movies
+router.get('/' , async(req,res)=>{
+
+  try {
+
+      const movie = await Movie.find();
+      res.json(movie);
+      
+  } catch (err) {
+
+      console.err(err.message);
+      res.status(500).send('server error');
+      
+  }
+});
 
 module.exports = router;
 

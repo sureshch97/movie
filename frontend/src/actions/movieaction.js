@@ -1,20 +1,20 @@
 import {
 
-    ADD_MOVIE
+    ADD_MOVIE, GET_MOVIE, MOVIE_ERROR
 }
 from '../type'
 import axios from 'axios'
 
-export const  addmovie =  ( formData)=> async(dispatch)=>{
+export const  addmovie =  (addmovie)=> async(dispatch)=>{
 
     const config = {
         headers:{
-          'Content-Type':'multipart/form-data'
+          'Content-Type':'application/json'
         }
       };
   
       try {
-        const res =  await axios.post('/api/movies' , formData ,  config)
+        const res =  await axios.post('/api/movie' , addmovie,  config)
         dispatch({
             type:ADD_MOVIE,
             payload:res.data
@@ -25,6 +25,26 @@ export const  addmovie =  ( formData)=> async(dispatch)=>{
         
     }
     };
+
+
+    //GET BOOKS
+export const getmovies =()=> async dispatch =>{
+
+  try {
+      const res =  await axios.get('/api/movie')
+      dispatch({
+          type:GET_MOVIE,
+          payload:res.data
+      })
+  } catch (error) {
+
+      dispatch({
+          type:MOVIE_ERROR
+      })
+      
+  }
+};
+
    
 
 
